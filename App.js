@@ -32,17 +32,8 @@ const CustomDrawer = props => {
             marginBottom: 5,
             marginTop: 5
           }}>
-          Good Evening! Mr. John Doe.
+          Mr. John Doe.
         </Text>
-        <View style={{ flexDirection: 'row' }}>
-          <Text
-            style={{
-              color: '#fff',
-              marginRight: 5,
-            }}>
-            280 Coins
-          </Text>
-        </View>
       </View>
 
       <View style={{ flex: 1, backgroundColor: '#FFF', paddingTop: 2 }}>
@@ -50,32 +41,44 @@ const CustomDrawer = props => {
       </View>
     </DrawerContentScrollView>
 
-    <View style={{ padding: 20, borderTopWidth: 1, borderTopColor: '#ccc', backgroundColor: '#8200d6' }}>
-      <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 5 }}>
+    <View style={{ padding: 10, borderTopWidth: 1, borderTopColor: '#ccc', }}>
+      <TouchableOpacity onPress={() => { props.navigation.navigate('AppHome') }} style={{ paddingVertical: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image
+            style={{ width: 18, height: 18 }}
+            source={require('./asset/image/tabbar/dashboard-64.png')}
+          />
           <Text
             style={{
               fontSize: 15,
-              marginLeft: 5,
-              color: "#FFF"
+              marginLeft: 25,
+              color: "#000"
             }}>
-            Tell a Friend
+            Dashboard
           </Text>
         </View>
       </TouchableOpacity>
-      <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 5 }}>
+    </View>
+
+    <View style={{ padding: 10 }}>
+      <TouchableOpacity onPress={() => { }} style={{ paddingVertical: 1 }}>
         <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+          <Image
+            style={{ width: 18, height: 18 }}
+            source={require('./asset/image/tabbar/account-logout-64.png')}
+          />
           <Text
             style={{
               fontSize: 15,
-              marginLeft: 5,
-              color: "#FFF"
+              marginLeft: 25,
+              color: "#000"
             }}>
             Sign Out
           </Text>
         </View>
       </TouchableOpacity>
     </View>
+
   </View>
   );
 };
@@ -85,14 +88,45 @@ function DrawerScreen({ navigation }) {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawer {...props} />}
       screenOptions={{
+        drawerActiveBackgroundColor: "#aa18ea",
+        drawerActiveTintColor: "#fff",
+        drawerInactiveTintColor: "#333",
         drawerStyle: {
           width: 250,
         },
       }}
+      initialRouteName='Home'
     >
-      <Drawer.Screen name="Home" component={BottomTabBar} />
-      <Drawer.Screen name="Profile" component={DashboardProfile} />
-      <Drawer.Screen name="Contact" component={DashboardContact} />
+      <Drawer.Screen name="Home" component={BottomTabBar}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Image
+              style={{ width: 18, height: 18 }}
+              source={require('./asset/image/tabbar/home.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen name="Profile" component={DashboardProfile}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Image
+              style={{ width: 18, height: 18 }}
+              source={require('./asset/image/tabbar/user-2-64.png')}
+            />
+          ),
+        }}
+      />
+      <Drawer.Screen name="Contact" component={DashboardContact}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Image
+              style={{ width: 18, height: 18 }}
+              source={require('./asset/image/tabbar/contacts-2-64.png')}
+            />
+          ),
+        }}
+      />
     </Drawer.Navigator>
   );
 }
@@ -172,7 +206,7 @@ function BottomTabBar({ navigation }) {
                 <View style={tab === 'find' ? style.selected : style.notSelected}>
                   <Image
                     style={{ width: 25, height: 25 }}
-                    source={require('./asset/image/tabbar/find.png')}
+                    source={require('./asset/image/tabbar/search-2-64.png')}
                   />
                 </View>
               </TouchableOpacity>
