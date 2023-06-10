@@ -47,19 +47,19 @@ const OnboardingScreen = ({ navigation }) => {
                     backgroundColor: '#FFF',
                     image: <Image source={require('../../asset/image/onboard/snapchat-3-512.png')}
                         style={{
-                            width: responsiveWidth(35),
-                            height: responsiveHeight(20)
+                            width: 100,
+                            height: 100
                         }}
                     />,
                     title: <TitleOne text="welcome" />,
-                    subtitle: <SubtitleOne text=" WELCOME TO THE WORLD OF JOY WELCOME TO THE WORLD OF JOY!" />,
+                    subtitle: <SubtitleOne text=" WELCOME TO THE WORLD OF JOY." />,
                 },
                 {
                     backgroundColor: '#FFF',
                     image: <Image source={require('../../asset/image/onboard/snapchat-3-512-2.png')}
                         style={{
-                            width: responsiveWidth(35),
-                            height: responsiveHeight(20)
+                            width: 100,
+                            height: 100
                         }}
                     />,
                     title: <TitleOne text="WHATS INSIDE" />,
@@ -69,8 +69,8 @@ const OnboardingScreen = ({ navigation }) => {
                     backgroundColor: '#FFF',
                     image: <Image source={require('../../asset/image/onboard/snapchat-3-512-3.png')}
                         style={{
-                            width: responsiveWidth(35),
-                            height: responsiveHeight(20)
+                            width: 100,
+                            height: 100
                         }}
                     />,
                     title: <TitleOne text='EFFORT' />,
@@ -80,8 +80,8 @@ const OnboardingScreen = ({ navigation }) => {
                     backgroundColor: '#FFF',
                     image: <Image source={require('../../asset/image/onboard/snapchat-3-512-4.png')}
                         style={{
-                            width: responsiveWidth(35),
-                            height: responsiveHeight(20)
+                            width: 100,
+                            height: 100
                         }}
                     />,
                     title: <TitleOne text="LET'S GO" />,
