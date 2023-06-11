@@ -223,7 +223,19 @@ function App() {
     <NavigationContainer>
       <Stack.Navigator>
         <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="AppHome" component={HomeScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="AppHome" component={HomeScreen}
+          options={({ navigation, route }) => ({
+            headerShown: false,
+            title: "Movies",
+
+            headerRight: () => (
+              <Button
+                onPress={() => navigation.navigate('DrawerScreen')}
+                title="Next"
+              />
+            ),
+          })}
+        />
         <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
       </Stack.Navigator>
     </NavigationContainer>
