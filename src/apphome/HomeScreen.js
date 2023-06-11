@@ -18,7 +18,7 @@ export default function HomeScreen({ navigation }) {
         setFilterColor('')
         try {
             setMovies([])
-            const url = `http://www.omdbapi.com/?apikey=6af2b52f&s=${search}`
+            const url = `https://www.omdbapi.com/?apikey=6af2b52f&s=${search}`
             const response = await axios.get(url);
             if (response.data && response.data.Search) {
                 setMovies(response.data.Search);
@@ -36,10 +36,9 @@ export default function HomeScreen({ navigation }) {
         try {
             setMovies([])
             setFilterColor(filter)
-            const url = `http://www.omdbapi.com/?apikey=6af2b52f&s=${search}&type=${filter}`
+            const url = `https://www.omdbapi.com/?apikey=6af2b52f&s=${search}&type=${filter}`
             const response = await axios.get(url);
             if (response.data && response.data.Search) {
-                console.log(response.data.Search)
                 setMovies(response.data.Search);
             }
         }
@@ -98,7 +97,7 @@ export default function HomeScreen({ navigation }) {
     );
 
     const renderItem = ({ item }) => {
-        let imageSrc = { uri: item.Poster }
+        let imageSrc = item.Poster.indexOf('https') !== -1 ? { uri: item.Poster } : require('../../asset/image/blank-file-6-512.gif')
         return (
             <ListComponent Title={item.Title} Year={item.Year} imdbID={item.imdbID} Type={item.Type} Poster={imageSrc} />
         )
@@ -174,7 +173,7 @@ export default function HomeScreen({ navigation }) {
                 }}>
                     <TouchableOpacity onPress={() => { filterResult('series') }}>
                         <View style={{
-                            width: 200,
+                            width: responsiveWidth(48),
                             height: 40,
                             margin: 0,
                             borderColor: "#ddd",
@@ -197,7 +196,7 @@ export default function HomeScreen({ navigation }) {
                         </View></TouchableOpacity>
                     <TouchableOpacity onPress={() => { filterResult('movie') }}>
                         <View style={{
-                            width: 200,
+                            width: responsiveWidth(48),
                             height: 40,
                             margin: 0,
                             borderColor: "#ddd",
@@ -220,13 +219,15 @@ export default function HomeScreen({ navigation }) {
                         </View></TouchableOpacity>
                 </View>
             }
-            <FlatList
-                data={movies}
-                renderItem={renderItem}
-                keyExtractor={item => item.imdbID}
-                style={{ marginBottom: 130 }}
-                ListEmptyComponent={renderEmptyComponent}
-            />
+            {movies.length > 0 &&
+                <FlatList
+                    data={movies}
+                    renderItem={renderItem}
+                    keyExtractor={item => item.imdbID}
+                    style={{ marginBottom: 130 }}
+                    ListEmptyComponent={renderEmptyComponent}
+                />
+            }
         </SafeAreaView>
     );
 }

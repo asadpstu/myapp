@@ -11,6 +11,7 @@ import DashboardFind from './src/tab/DashboardFind';
 import DashboardProfile from './src/drawer/DashboardProfile';
 import DashboardContact from './src/drawer/DashboardContact';
 import HomeScreen from './src/apphome/HomeScreen';
+import { color } from 'react-native-reanimated';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -218,6 +219,29 @@ function BottomTabBar({ navigation }) {
   );
 }
 
+const Left = ({ navigation }) => {
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('AppHome')}>
+      <View style={{ height: 30, width: 50, justifyContent: 'center', alignItems: 'center' }}>
+        <Text style={{ color: '#dddddd' }}>
+          Back
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+const Right = ({ navigation }) => {
+  return (
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerScreen')}>
+      <View style={{ height: 30, width: 50, justifyContent: 'center', alignItems: 'center' }}>
+        <Text>
+          Home
+        </Text>
+      </View>
+    </TouchableOpacity>
+  );
+}
+
 function App() {
   return (
     <NavigationContainer>
@@ -225,14 +249,14 @@ function App() {
         <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
         <Stack.Screen name="AppHome" component={HomeScreen}
           options={({ navigation, route }) => ({
-            headerShown: false,
+            headerShown: true,
+            headerTitleAlign: 'center',
             title: "Movies",
-
+            headerLeft: () => (
+              <Left navigation={navigation} />
+            ),
             headerRight: () => (
-              <Button
-                onPress={() => navigation.navigate('DrawerScreen')}
-                title="Next"
-              />
+              <Right navigation={navigation} />
             ),
           })}
         />
@@ -241,6 +265,8 @@ function App() {
     </NavigationContainer>
   )
 }
+
+
 
 const style = StyleSheet.create({
   notSelected: {
