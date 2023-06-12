@@ -20,7 +20,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
     const [seriesRtRaw, setSeriesRtRaw] = useState(null)
     const [seriesMetaRaw, setSeriesMetaRaw] = useState(null)
 
-    const widthAndHeight = 100
+    const widthAndHeight = 90
 
     const sliceColorImdb = ['#ddd', 'green']
     const sliceColorRt = ['#ddd', 'green']
@@ -30,7 +30,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
     const getMovieDetails = async () => {
         try {
             setIsLoading(true)
-            const response = await axios.get(`http://www.omdbapi.com/?apikey=6af2b52f&i=${movieId}`);
+            const response = await axios.get(`https://www.omdbapi.com/?apikey=6af2b52f&i=${movieId}`);
             if (response.data) {
                 setDetails(response.data)
                 let URL = { uri: response.data.Poster }
@@ -83,9 +83,8 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             colors={['#DDD', '#FFF', '#ddd']}
                             style={styles.container}
                             locations={[.3, .55, .9]}
-
                         >
-                            <Text style={{ fontFamily: 'Courthes', fontSize: 16, color: 'blue', textTransform: 'uppercase' }}>{details.Title}</Text>
+                            <Text style={{ fontFamily: 'Courthes', fontSize: 14, color: 'blue', marginBottom: 10, marginTop: 15 }}>{details.Title}</Text>
                             <View style={{ flexDirection: 'row', }}>
                                 <Text style={{ color: '#000', }}>IMDB </Text>
                                 <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text>
@@ -93,12 +92,17 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                 <Text style={{ color: '#000', marginStart: 10 }}>Votes </Text>
                                 <Text style={{ color: '#FF0000', }}>{details.imdbVotes}</Text>
 
+                            </View>
+
+                            <View style={{ flexDirection: 'row', }}>
+
                                 <Text style={{ color: '#000', marginStart: 10 }}>BoxOffice </Text>
                                 <Text style={{ color: '#FF0000', }}>{details.BoxOffice}</Text>
-
-
-                                <Text style={{ color: '#000', marginStart: 10 }}>{details.Runtime}</Text>
+                                <Text style={{ color: '#000', marginStart: 10 }}>Duration </Text>
+                                <Text style={{ color: '#FF0000' }}>{details.Runtime}</Text>
                             </View>
+
+
                         </LinearGradient>
 
                         <View style={{
@@ -145,7 +149,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             <View style={{
                                 flexDirection: 'row',
                                 flexWrap: 'wrap',
-                                margin: 7,
+                                margin: 10,
                                 borderRadius: 10,
                                 marginBottom: 30,
 
@@ -162,11 +166,11 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                         widthAndHeight={widthAndHeight}
                                         series={seriesImdb}
                                         sliceColor={sliceColorImdb}
-                                        coverRadius={0.5}
+                                        coverRadius={0.6}
                                         coverFill={'#ddd'}
                                     />
-                                    <Text style={{ marginTop: 5, color: 'blue' }}>IMDB</Text>
-                                    <Text style={{ marginTop: 5, color: 'green' }}>{seriesImdbRaw}</Text>
+                                    <Text style={{ marginTop: 5, color: 'blue', textAlign: 'center' }}>IMDB</Text>
+                                    <Text style={{ marginTop: 5, color: 'green', textAlign: 'center' }}>{seriesImdbRaw}</Text>
                                 </View>
 
                                 <View style={{
@@ -180,11 +184,11 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                         widthAndHeight={widthAndHeight}
                                         series={seriesRt}
                                         sliceColor={sliceColorRt}
-                                        coverRadius={0.5}
+                                        coverRadius={0.6}
                                         coverFill={'#FFF'}
                                     />
-                                    <Text style={{ marginTop: 5, color: 'blue' }}>Rotten Tomatoes</Text>
-                                    <Text style={{ marginTop: 5, color: 'green' }}>{seriesRtRaw}</Text>
+                                    <Text style={{ marginTop: 5, color: 'blue', textAlign: 'center' }}>Rotten Tomatoes</Text>
+                                    <Text style={{ marginTop: 5, color: 'green', textAlign: 'center' }}>{seriesRtRaw}</Text>
                                 </View>
 
                                 <View style={{
@@ -200,11 +204,11 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                         widthAndHeight={widthAndHeight}
                                         series={seriesMeta}
                                         sliceColor={sliceColorMeta}
-                                        coverRadius={0.5}
+                                        coverRadius={0.6}
                                         coverFill={'#FFF'}
                                     />
-                                    <Text style={{ marginTop: 5, color: 'blue' }}>Metacritic</Text>
-                                    <Text style={{ marginTop: 5, color: 'green' }}>{seriesMetaRaw}</Text>
+                                    <Text style={{ marginTop: 5, color: 'blue', textAlign: 'center' }}>Metacritic</Text>
+                                    <Text style={{ marginTop: 5, color: 'green', textAlign: 'center' }}>{seriesMetaRaw}</Text>
 
                                 </View>
                             </View>
@@ -227,8 +231,8 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'center',
-        height: 70,
-        marginBottom: 10
+        height: 90,
+        marginBottom: 20
     },
     linearGradient: {
         alignItems: 'center',
