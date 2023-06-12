@@ -11,6 +11,7 @@ import DashboardFind from './src/tab/DashboardFind';
 import DashboardProfile from './src/drawer/DashboardProfile';
 import DashboardContact from './src/drawer/DashboardContact';
 import HomeScreen from './src/apphome/HomeScreen';
+import HomeScreenMovieDetails from './src/apphome/HomeScreenMovieDetails';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -260,6 +261,8 @@ function App() {
           })}
         />
         <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
+        <Stack.Screen name="Movie details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
+
       </Stack.Navigator>
     </NavigationContainer>
   )

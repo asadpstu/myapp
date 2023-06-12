@@ -71,43 +71,48 @@ export default function HomeScreen({ navigation }) {
 
     const ListComponent = ({ Title, Year, imdbID, Type, Poster }) => {
         return (
-            <View style={{
-                flexDirection: 'row',
-                flexWrap: 'wrap',
-                padding: 5,
-                margin: 5,
-                borderColor: '#ddd',
-                borderWidth: 1,
-                borderRadius: 10
-            }}>
+            <TouchableOpacity
+                onPress={() => { navigation.navigate('Movie details', { props: imdbID }) }}
+            >
                 <View style={{
-                    height: 120,
-                    width: '60%'
+                    flexDirection: 'row',
+                    flexWrap: 'wrap',
+                    padding: 5,
+                    margin: 5,
+                    borderColor: '#ddd',
+                    borderWidth: 1,
+                    borderRadius: 10
                 }}
                 >
-                    <Text style={{ margin: 1, color: '#8200d6', fontSize: 15, textTransform: 'uppercase' }}> {Title} </Text>
-                    <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> {Type} </Text>
-                    <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> Released on {Year} </Text>
-                    <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> IMDBID : {imdbID} </Text>
-                </View>
+                    <View style={{
+                        height: 120,
+                        width: '60%'
+                    }}
+                    >
+                        <Text style={{ margin: 1, color: '#8200d6', fontSize: 15, textTransform: 'uppercase' }}> {Title} </Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> {Type} </Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> Released on {Year} </Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> IMDBID : {imdbID} </Text>
+                    </View>
 
-                <View style={{
-                    height: 120,
-                    width: '38%',
-                    padding: 1
-                }}
+                    <View style={{
+                        height: 120,
+                        width: '38%',
+                        padding: 1
+                    }}
 
-                >
-                    <Image source={Poster}
-                        style={{
-                            width: responsiveWidth(30),
-                            height: responsiveHeight(17),
-                            padding: 1,
-                            alignSelf: 'flex-end'
-                        }}
-                    />
+                    >
+                        <Image source={Poster}
+                            style={{
+                                width: responsiveWidth(30),
+                                height: responsiveHeight(17),
+                                padding: 1,
+                                alignSelf: 'flex-end',
+                            }}
+                        />
+                    </View>
                 </View>
-            </View>
+            </TouchableOpacity>
         );
     }
 
