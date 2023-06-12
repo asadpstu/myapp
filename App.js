@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, Button, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
@@ -11,7 +11,6 @@ import DashboardFind from './src/tab/DashboardFind';
 import DashboardProfile from './src/drawer/DashboardProfile';
 import DashboardContact from './src/drawer/DashboardContact';
 import HomeScreen from './src/apphome/HomeScreen';
-import { color } from 'react-native-reanimated';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
