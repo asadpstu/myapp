@@ -80,11 +80,11 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                     <View style={{ backgroundColor: '#ddd' }}>
 
                         <LinearGradient
-                            colors={['#DDD', '#FFF', '#ddd']}
+                            colors={['#ddd', '#FFF', '#ddd']}
                             style={styles.container}
-                            locations={[.3, .55, .9]}
+                            locations={[.021, .09, .99]}
                         >
-                            <Text style={{ fontFamily: 'Courthes', fontSize: 14, color: 'blue', marginBottom: 10, marginTop: 15 }}>{details.Title}</Text>
+                            <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', marginBottom: 10, marginTop: 15, textAlign: 'center' }}>{details.Title}</Text>
                             <View style={{ flexDirection: 'row', }}>
                                 <Text style={{ color: '#000', }}>IMDB </Text>
                                 <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text>
@@ -111,7 +111,8 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             width: '100%',
                             justifyContent: 'center',
                             alignItems: 'center',
-                            alignContent: 'center'
+                            alignContent: 'center',
+
                         }}
                         >
                             <Image source={url}
@@ -119,6 +120,10 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                     width: '100%',
                                     height: undefined,
                                     aspectRatio: 1,
+                                    borderRadius: 15,
+                                    margin: 10,
+                                    borderColor: '#DDD',
+                                    borderWidth: 5
                                 }}
                             />
 
@@ -128,9 +133,10 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                         <LinearGradient
                             colors={['#DDD', '#FFF', '#ddd']}
                             locations={[.3, .55, .9]}
+
                         >
                             <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 18, color: 'blue', padding: 5, marginStart: 22 }}>Overview</Text>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', padding: 5, marginStart: 22 }}>Overview</Text>
                                 <Text style={{ color: '#000', marginTop: 1, paddingLeft: 25, paddingRight: 25, textAlign: 'justify' }}>{details.Plot}</Text>
                             </View>
                         </LinearGradient>
@@ -141,7 +147,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             locations={[.3, .55, .9]}
                         >
                             <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 18, color: 'blue', padding: 5, marginStart: 22 }}>Ratings</Text>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', padding: 5, marginStart: 22 }}>Ratings</Text>
                             </View>
 
 

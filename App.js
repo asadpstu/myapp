@@ -12,6 +12,7 @@ import DashboardProfile from './src/drawer/DashboardProfile';
 import DashboardContact from './src/drawer/DashboardContact';
 import HomeScreen from './src/apphome/HomeScreen';
 import HomeScreenMovieDetails from './src/apphome/HomeScreenMovieDetails';
+import VoiceCallPage from './src/Videocall/VoiceCallPage';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -221,22 +222,24 @@ function BottomTabBar({ navigation }) {
 
 const Left = ({ navigation }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('AppHome')}>
-      <View style={{ height: 30, width: 50, justifyContent: 'center', alignItems: 'center' }}>
-        <Text style={{ color: '#dddddd' }}>
-          Back
-        </Text>
+    <TouchableOpacity onPress={() => navigation.navigate('DrawerScreen')}>
+      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
+        <Image
+          style={{ width: 20, height: 20 }}
+          source={require('./asset/image/tabbar/home.gif')}
+        />
       </View>
     </TouchableOpacity>
   );
 }
 const Right = ({ navigation }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('DrawerScreen')}>
-      <View style={{ height: 30, width: 50, justifyContent: 'center', alignItems: 'center' }}>
-        <Text>
-          Home
-        </Text>
+    <TouchableOpacity onPress={() => navigation.navigate('VoiceCallScreen')}>
+      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
+        <Image
+          style={{ width: 25, height: 25 }}
+          source={require('./asset/image/tabbar/phone.gif')}
+        />
       </View>
     </TouchableOpacity>
   );
@@ -251,7 +254,7 @@ function App() {
           options={({ navigation, route }) => ({
             headerShown: true,
             headerTitleAlign: 'center',
-            title: "Movies",
+            title: "FINDER",
             headerLeft: () => (
               <Left navigation={navigation} />
             ),
@@ -261,7 +264,8 @@ function App() {
           })}
         />
         <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Movie details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
+        <Stack.Screen name="Details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
+        <Stack.Screen name="VoiceCallScreen" component={VoiceCallPage} options={{ headerShown: false }} />
 
       </Stack.Navigator>
     </NavigationContainer>

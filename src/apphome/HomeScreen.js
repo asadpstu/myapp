@@ -72,7 +72,7 @@ export default function HomeScreen({ navigation }) {
     const ListComponent = ({ Title, Year, imdbID, Type, Poster }) => {
         return (
             <TouchableOpacity
-                onPress={() => { navigation.navigate('Movie details', { props: imdbID }) }}
+                onPress={() => { navigation.navigate('Details', { props: imdbID }) }}
             >
                 <View style={{
                     flexDirection: 'row',
@@ -89,10 +89,10 @@ export default function HomeScreen({ navigation }) {
                         width: '60%'
                     }}
                     >
-                        <Text style={{ margin: 1, color: '#8200d6', fontSize: 15, textTransform: 'uppercase' }}> {Title} </Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> {Type} </Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> Released on {Year} </Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}> IMDBID : {imdbID} </Text>
+                        <Text style={{ margin: 1, color: '#8200d6', fontSize: 15, textTransform: 'uppercase' }}>{Title}</Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>{Type}</Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>Released on {Year}</Text>
+                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>IMDBID : {imdbID}</Text>
                     </View>
 
                     <View style={{
@@ -134,9 +134,8 @@ export default function HomeScreen({ navigation }) {
             <View style={{
                 flexDirection: 'row',
                 flexWrap: 'wrap',
-                margin: 7,
+                margin: 15,
                 borderRadius: 10,
-                marginBottom: 10
             }}>
                 <View style={{
                     width: '97%',
@@ -163,13 +162,13 @@ export default function HomeScreen({ navigation }) {
                         borderWidth: 1,
                         borderTopLeftRadius: 5,
                         borderBottomLeftRadius: 5,
-                        backgroundColor: `${selected === 'search' ? '#ddd' : '#FFF'}`,
+                        backgroundColor: `${selected === 'search' ? 'green' : '#CCC'}`,
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
                     >
                         <View>
-                            <Text>
+                            <Text style={{ color: '#000' }}>
                                 {isLoading && selected === 'search' ? 'Loading..' : 'Search'}
                             </Text>
                         </View>
@@ -183,13 +182,13 @@ export default function HomeScreen({ navigation }) {
                         borderColor: "#ddd",
                         borderWidth: 1,
 
-                        backgroundColor: `${selected === 'series' ? '#ddd' : '#FFF'}`,
+                        backgroundColor: `${selected === 'series' ? 'green' : '#ccc'}`,
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
                     >
                         <View>
-                            <Text>
+                            <Text style={{ color: '#000' }}>
                                 {isLoading && selected === 'series' ? 'Loading..' : 'Series'}
                             </Text>
                         </View>
@@ -204,13 +203,13 @@ export default function HomeScreen({ navigation }) {
                         borderLeftWidth: 1,
                         borderTopRightRadius: 5,
                         borderBottomRightRadius: 5,
-                        backgroundColor: `${selected === 'movie' ? '#ddd' : '#FFF'}`,
+                        backgroundColor: `${selected === 'movie' ? 'green' : '#ccc'}`,
                         justifyContent: 'center',
                         alignItems: 'center'
                     }}
                     >
                         <View>
-                            <Text>
+                            <Text style={{ color: '#000' }}>
                                 {isLoading && selected === 'movie' ? 'Loading..' : 'Movie'}
                             </Text>
                         </View>
@@ -239,13 +238,15 @@ const styles = StyleSheet.create({
         borderWidth: 0,
         padding: 10,
         borderLeftWidth: 2,
-        borderColor: '#CCC',
-        fontSize: 16
+        borderBottomWidth: 2,
+        borderColor: '#000',
+        fontSize: 16,
+        borderRadius: 10
     },
     buttonContainer: {
         flexDirection: 'row',
         flexWrap: 'wrap',
-        margin: 1,
+        margin: 3,
         borderColor: '#ddd',
         borderWidth: 0,
         borderRadius: 10,
