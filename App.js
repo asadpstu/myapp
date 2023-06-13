@@ -234,7 +234,12 @@ const Left = ({ navigation }) => {
 }
 const Right = ({ navigation }) => {
   return (
-    <TouchableOpacity onPress={() => navigation.navigate('VoiceCallScreen')}>
+    <TouchableOpacity
+      onPress={() => navigation.navigate('VoiceCallScreen', {
+        userID: `${String(Math.random() * 10).split('.')[1]}`,
+        userName: `Friend_${String(Math.random() * 10).split('.')[1]}`,
+      })}
+    >
       <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
         <Image
           style={{ width: 25, height: 25 }}

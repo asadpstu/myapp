@@ -63,7 +63,7 @@ const OnboardingScreen = ({ navigation }) => {
                         }}
                     />,
                     title: <TitleOne text="WHATS INSIDE" />,
-                    subtitle: <SubtitleOne text='MUSIC VIDEO AUDIO-VIDEO-CALL AND MORE AUDIO-VIDEO-CALL AND MORE.' />
+                    subtitle: <SubtitleOne text='MOVIE DATABASE, AUDIO VIDEO CALL AND MANY MORE.' />
                 },
                 {
                     backgroundColor: '#FFF',
@@ -74,7 +74,7 @@ const OnboardingScreen = ({ navigation }) => {
                         }}
                     />,
                     title: <TitleOne text='EFFORT' />,
-                    subtitle: <SubtitleOne text='LITTLE EFFORT MAKE RICH COMMUNITY EFFORT MAKE RICH COMMUNITY.' />
+                    subtitle: <SubtitleOne text='LITTLE EFFORT MAKE RICH COMMUNITY.' />
                 },
                 {
                     backgroundColor: '#FFF',
@@ -85,7 +85,7 @@ const OnboardingScreen = ({ navigation }) => {
                         }}
                     />,
                     title: <TitleOne text="LET'S GO" />,
-                    subtitle: <SubtitleOne text='TOGETHER WE WIN FOR BETTER TOMORROW TOGETHER WE WIN.' />,
+                    subtitle: <SubtitleOne text='TOGETHER WE WIN FOR BETTER TOMORROW.' />,
                 },
 
             ]}
