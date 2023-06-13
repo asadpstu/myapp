@@ -90,7 +90,7 @@ export default function DashboardHome() {
                 ItemSeparatorComponent={myItemSeparator}
                 ListEmptyComponent={myListEmpty}
                 ListFooterComponent={() => (
-                    <Text style={{ fontSize: 20, textAlign: "center", marginBottom: 20, }}>- - -</Text>
+                    <Text style={{ fontSize: 20, textAlign: "center", marginBottom: 20, }}></Text>
                 )}
             />
         </SafeAreaView>
