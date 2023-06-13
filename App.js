@@ -226,7 +226,7 @@ const Left = ({ navigation }) => {
       <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
         <Image
           style={{ width: 20, height: 20 }}
-          source={require('./asset/image/tabbar/home.gif')}
+          source={require('./asset/image/tabbar/home_top.gif')}
         />
       </View>
     </TouchableOpacity>

@@ -137,19 +137,19 @@ export default function HomeScreen({ navigation }) {
                 margin: 15,
                 borderRadius: 10,
             }}>
-                <View style={{
+                {/* <View style={{
                     width: '97%',
                     marginTop: 5,
                     marginBottom: 5,
                 }}
-                >
-                    <TextInput
-                        style={styles.input}
-                        placeholder="Search by movie name"
-                        onChangeText={handleInputChange}
-                        value={search}
-                    />
-                </View>
+                > */}
+                <TextInput
+                    style={styles.input}
+                    placeholder="Search by movie name"
+                    onChangeText={handleInputChange}
+                    value={search}
+                />
+                {/* </View> */}
             </View>
 
             <View style={styles.buttonContainer}>
@@ -235,13 +235,12 @@ export default function HomeScreen({ navigation }) {
 const styles = StyleSheet.create({
     input: {
         height: 40,
-        borderWidth: 0,
+        width: '100%',
+        borderWidth: 2,
         padding: 10,
-        borderLeftWidth: 2,
-        borderBottomWidth: 2,
-        borderColor: '#000',
+        borderColor: '#9A8FA2',
         fontSize: 16,
-        borderRadius: 10
+        borderRadius: 5
     },
     buttonContainer: {
         flexDirection: 'row',
