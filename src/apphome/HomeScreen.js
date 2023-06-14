@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
-import { View, Text, TouchableOpacity, SafeAreaView, Image, TextInput, StyleSheet, Button, FlatList } from 'react-native';
+import { View, Text, TouchableOpacity, SafeAreaView, Image, TextInput, StyleSheet, Button, FlatList, ActivityIndicator } from 'react-native';
 import { responsiveHeight, responsiveWidth } from 'react-native-responsive-dimensions';
 
 export default function HomeScreen({ navigation }) {
@@ -77,26 +77,28 @@ export default function HomeScreen({ navigation }) {
                 <View style={{
                     flexDirection: 'row',
                     flexWrap: 'wrap',
-                    padding: 5,
-                    margin: 5,
+                    padding: 10,
+                    marginLeft: 15,
+                    marginRight: 15,
+                    marginBottom: 15,
                     borderColor: '#ddd',
                     borderWidth: 1,
                     borderRadius: 10
                 }}
                 >
                     <View style={{
-                        height: 120,
+
                         width: '60%'
                     }}
                     >
-                        <Text style={{ margin: 1, color: '#8200d6', fontSize: 15, textTransform: 'uppercase' }}>{Title}</Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>{Type}</Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>Released on {Year}</Text>
-                        <Text style={{ margin: 1, color: '#820', fontSize: 13, textTransform: 'uppercase', fontWeight: 600 }}>IMDBID : {imdbID}</Text>
+                        <Text style={{ margin: 1, color: '#000', fontSize: 15, fontWeight: '900', textTransform: 'uppercase' }}>{Title}</Text>
+                        <Text style={{ margin: 1, color: '#000', fontSize: 13, fontWeight: '400', textTransform: 'uppercase', fontWeight: 600 }}>{Type}</Text>
+                        <Text style={{ margin: 1, color: '#000', fontSize: 13, fontWeight: '400', textTransform: 'uppercase', fontWeight: 600 }}>Released on {Year}</Text>
+                        <Text style={{ margin: 1, color: '#000', fontSize: 13, fontWeight: '400', textTransform: 'uppercase', fontWeight: 600 }}>IMDBID : {imdbID}</Text>
                     </View>
 
                     <View style={{
-                        height: 120,
+
                         width: '38%',
                         padding: 1
                     }}
@@ -137,19 +139,12 @@ export default function HomeScreen({ navigation }) {
                 margin: 15,
                 borderRadius: 10,
             }}>
-                {/* <View style={{
-                    width: '97%',
-                    marginTop: 5,
-                    marginBottom: 5,
-                }}
-                > */}
                 <TextInput
                     style={styles.input}
                     placeholder="Search by movie name"
                     onChangeText={handleInputChange}
                     value={search}
                 />
-                {/* </View> */}
             </View>
 
             <View style={styles.buttonContainer}>
@@ -167,11 +162,13 @@ export default function HomeScreen({ navigation }) {
                         alignItems: 'center'
                     }}
                     >
-                        <View>
-                            <Text style={{ color: '#000' }}>
-                                {isLoading && selected === 'search' ? 'Loading..' : 'Search'}
-                            </Text>
-                        </View>
+
+                        <Text style={{ color: '#000' }}>
+                            {isLoading && selected === 'search'
+                                ? <ActivityIndicator size="large" color="#0000ff" />
+                                : 'Search'}
+                        </Text>
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { onSearchMovie('series') }}>
@@ -187,11 +184,14 @@ export default function HomeScreen({ navigation }) {
                         alignItems: 'center'
                     }}
                     >
-                        <View>
-                            <Text style={{ color: '#000' }}>
-                                {isLoading && selected === 'series' ? 'Loading..' : 'Series'}
-                            </Text>
-                        </View>
+
+                        <Text style={{ color: '#000' }}>
+                            {isLoading && selected === 'series'
+                                ?
+                                <ActivityIndicator size="large" color="#0000ff" />
+                                : 'Series'}
+                        </Text>
+
                     </View>
                 </TouchableOpacity>
                 <TouchableOpacity onPress={() => { onSearchMovie('movie') }}>
@@ -208,11 +208,14 @@ export default function HomeScreen({ navigation }) {
                         alignItems: 'center'
                     }}
                     >
-                        <View>
-                            <Text style={{ color: '#000' }}>
-                                {isLoading && selected === 'movie' ? 'Loading..' : 'Movie'}
-                            </Text>
-                        </View>
+
+                        <Text style={{ color: '#000' }}>
+                            {isLoading && selected === 'movie'
+                                ?
+                                <ActivityIndicator size="large" color="#0000ff" />
+                                : 'Movie'}
+                        </Text>
+
                     </View>
                 </TouchableOpacity>
             </View>
@@ -238,7 +241,7 @@ const styles = StyleSheet.create({
         width: '100%',
         borderWidth: 2,
         padding: 10,
-        borderColor: '#9A8FA2',
+        borderColor: 'green',
         fontSize: 16,
         borderRadius: 5
     },
