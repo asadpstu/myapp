@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Provider } from 'react-redux';
 import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
@@ -13,6 +14,7 @@ import DashboardContact from './src/drawer/DashboardContact';
 import HomeScreen from './src/apphome/HomeScreen';
 import HomeScreenMovieDetails from './src/apphome/HomeScreenMovieDetails';
 import VoiceCallPage from './src/Videocall/VoiceCallPage';
+import { store } from './redux/store';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -252,28 +254,30 @@ const Right = ({ navigation }) => {
 
 function App() {
   return (
-    <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="AppHome" component={HomeScreen}
-          options={({ navigation, route }) => ({
-            headerShown: true,
-            headerTitleAlign: 'center',
-            title: "FINDER",
-            headerLeft: () => (
-              <Left navigation={navigation} />
-            ),
-            headerRight: () => (
-              <Right navigation={navigation} />
-            ),
-          })}
-        />
-        <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
-        <Stack.Screen name="Details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
-        <Stack.Screen name="VoiceCallScreen" component={VoiceCallPage} options={{ headerShown: false }} />
+    <Provider store={store}>
+      <NavigationContainer>
+        <Stack.Navigator>
+          <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="AppHome" component={HomeScreen}
+            options={({ navigation, route }) => ({
+              headerShown: true,
+              headerTitleAlign: 'center',
+              title: "FINDER",
+              headerLeft: () => (
+                <Left navigation={navigation} />
+              ),
+              headerRight: () => (
+                <Right navigation={navigation} />
+              ),
+            })}
+          />
+          <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
+          <Stack.Screen name="Details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
+          <Stack.Screen name="VoiceCallScreen" component={VoiceCallPage} options={{ headerShown: false }} />
 
-      </Stack.Navigator>
-    </NavigationContainer>
+        </Stack.Navigator>
+      </NavigationContainer>
+    </Provider>
   )
 }
 

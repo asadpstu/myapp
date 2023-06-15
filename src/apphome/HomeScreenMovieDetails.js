@@ -1,11 +1,14 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import { ActivityIndicator, Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PieChart from 'react-native-pie-chart'
 import LinearGradient from 'react-native-linear-gradient'
 import FloatingButton from './FloatingButton';
+import { addCart } from '../../redux/actions/addCartAction';
 
 export default function HomeScreenMovieDetails({ navigation, route }) {
+    const dispatch = useDispatch();
     const movieId = route.params.props;
     const [details, setDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false)
@@ -29,6 +32,18 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
     const sliceColorRt = ['#ddd', 'green']
     const sliceColorMeta = ['#ddd', 'green']
 
+
+    const handleIncrement = (movieId) => {
+        setHeight(100);
+        setWidth(100);
+
+        const payload = {
+            imdbId: movieId,
+            price: 100,
+            qty: 1
+        }
+        dispatch(addCart(payload));
+    };
 
     const getMovieDetails = async () => {
         try {
@@ -75,13 +90,6 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
         }
     }
 
-    const addToCart = (movieId) => {
-        setHeight(100);
-        setWidth(100);
-        alert(movieId)
-    }
-
-
     return (
         <View>
 
@@ -101,31 +109,6 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                         }}
                         scrollEventThrottle={600}
                     >
-                        <LinearGradient
-                            colors={['#ddd', '#FFF', '#ddd']}
-                            style={styles.container}
-                            locations={[.021, .09, .99]}
-                        >
-                            <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', marginBottom: 10, marginTop: 15, textAlign: 'center' }}>{details.Title}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ color: '#000', }}>IMDB </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text>
-
-                                <Text style={{ color: '#000', marginStart: 10 }}>Votes </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.imdbVotes}</Text>
-
-                            </View>
-
-                            <View style={{ flexDirection: 'row', }}>
-                                <Text style={{ color: '#000', marginStart: 10 }}>BoxOffice </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.BoxOffice ? details.BoxOffice : '1,00,000'}</Text>
-                                <Text style={{ color: '#000', marginStart: 10 }}>Duration </Text>
-                                <Text style={{ color: '#FF0000' }}>{details.Runtime}</Text>
-                            </View>
-
-
-                        </LinearGradient>
-
                         <View style={{
                             flexDirection: 'row',
                             flexWrap: 'wrap',
@@ -141,15 +124,37 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                                     width: '100%',
                                     height: undefined,
                                     aspectRatio: 1,
-                                    borderRadius: 15,
-                                    margin: 10,
-                                    borderColor: '#DDD',
-                                    borderWidth: 5
+
                                 }}
                             />
 
-
                         </View>
+                        <LinearGradient
+                            colors={['#ddd', '#FFF', '#ddd']}
+                            style={styles.container}
+                            locations={[.021, .09, .99]}
+                        >
+                            <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', marginBottom: 10, marginTop: 15, textAlign: 'center' }}>{details.Title}</Text>
+                            <View style={{ flexDirection: 'row' }}>
+                                <Text style={{ color: '#000', }}>IMDB </Text>
+                                <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text>
+
+                                <Text style={{ color: '#000', marginStart: 10 }}>VOTE </Text>
+                                <Text style={{ color: '#FF0000', }}>{details.imdbVotes}</Text>
+
+                            </View>
+
+                            <View style={{ flexDirection: 'row', }}>
+                                <Text style={{ color: '#000', marginStart: 10 }}>COLLECTION </Text>
+                                <Text style={{ color: '#FF0000', }}>{details.BoxOffice ? details.BoxOffice : '1,00,000'}</Text>
+                                <Text style={{ color: '#000', marginStart: 10 }}>DURATION </Text>
+                                <Text style={{ color: '#FF0000' }}>{details.Runtime}</Text>
+                            </View>
+
+
+                        </LinearGradient>
+
+
 
                         <LinearGradient
                             colors={['#DDD', '#FFF', '#ddd']}
@@ -157,7 +162,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
                         >
                             <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', padding: 5, marginStart: 22 }}>Overview</Text>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, marginStart: 22 }}>Overview</Text>
                                 <Text style={{ color: '#000', marginTop: 1, paddingLeft: 25, paddingRight: 25, textAlign: 'justify' }}>{details.Plot}</Text>
                             </View>
                         </LinearGradient>
@@ -168,7 +173,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             locations={[.3, .55, .9]}
                         >
                             <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'blue', padding: 5, marginStart: 22 }}>Ratings</Text>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, marginStart: 22 }}>Ratings</Text>
                             </View>
 
 
@@ -246,10 +251,12 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                     </ScrollView>
                     <FloatingButton
                         style={styles.floatinBtn}
-                        onPress={() => { addToCart(movieId) }}
+                        onPress={() => { handleIncrement(movieId) }}
                         height={cartHeight}
                         width={cartWidth}
                     />
+
+
                 </View>
             }
 
@@ -269,7 +276,7 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
         height: 90,
-        marginBottom: 20
+
     },
     linearGradient: {
         alignItems: 'center',

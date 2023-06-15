@@ -1,7 +1,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, TouchableOpacity, Animated, Text, Image } from 'react-native';
+import { useSelector } from 'react-redux';
 
 export default FloatingButton = (props) => {
+    const cartList = useSelector((store) => store.cart.cart);
     const { height, width } = props;
     const [viewHeight, setViewHeight] = useState(new Animated.Value(height));
     const [viewWidth, setViewWidth] = useState(new Animated.Value(width));
@@ -43,15 +45,28 @@ export default FloatingButton = (props) => {
                     justifyContent: 'center',
                     alignItems: 'center',
                     paddingLeft: 10,
-                    paddingTop: 10
+                    paddingTop: 5
                 }}
             >
-
+                {cartList.length > 0 &&
+                    <Text style={{
+                        backgroundColor: 'red',
+                        height: 24,
+                        width: 24,
+                        borderRadius: 20,
+                        textAlign: 'center',
+                        fontWeight: 900,
+                        color: 'white',
+                        marginLeft: 1
+                    }}>
+                        {cartList.length}
+                    </Text>
+                }
                 <Image
                     resizeMode="contain"
                     style={{
-                        width: 40,
-                        height: 40,
+                        width: 30,
+                        height: 30,
                     }}
                     source={require('../../asset/image/free-add-to-cart-icon-3046-thumb.png')}
                 />
