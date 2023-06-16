@@ -5,3 +5,18 @@ export const addCart = (payload) => {
     };
 };
 
+export const increaseCart = (payload) => {
+    return {
+        type: 'INCREASE_CART',
+        payload: payload
+    };
+};
+
+
+export const decreaseCart = (payload) => {
+    return {
+        type: 'DECREASE_CART',
+        payload: payload
+    };
+};
+

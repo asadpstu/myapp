@@ -15,6 +15,7 @@ import HomeScreen from './src/apphome/HomeScreen';
 import HomeScreenMovieDetails from './src/apphome/HomeScreenMovieDetails';
 import VoiceCallPage from './src/Videocall/VoiceCallPage';
 import { store } from './redux/store';
+import MyCartScreen from './src/drawer/MyCartScreen';
 
 const Stack = createNativeStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -131,6 +132,17 @@ function DrawerScreen({ navigation }) {
           ),
         }}
       />
+      <Drawer.Screen name="My Cart" component={MyCartScreen}
+        options={{
+          drawerIcon: ({ color }) => (
+            <Image
+              style={{ width: 18, height: 18 }}
+              source={require('./asset/image/free-add-to-cart-icon-3046-thumb.png')}
+            />
+          ),
+        }}
+      />
+
     </Drawer.Navigator>
   );
 }
@@ -272,8 +284,9 @@ function App() {
             })}
           />
           <Stack.Screen name="DrawerScreen" component={DrawerScreen} options={{ headerShown: false }} />
-          <Stack.Screen name="Details" component={HomeScreenMovieDetails} options={{ headerShown: true }} />
+          <Stack.Screen name="Details" component={HomeScreenMovieDetails} options={{ headerShown: false }} />
           <Stack.Screen name="VoiceCallScreen" component={VoiceCallPage} options={{ headerShown: false }} />
+          <Stack.Screen name="My Cart List" component={MyCartScreen} options={{ headerShown: true }} />
 
         </Stack.Navigator>
       </NavigationContainer>

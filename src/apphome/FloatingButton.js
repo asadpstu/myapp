@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react';
-import { View, TouchableOpacity, Animated, Text, Image } from 'react-native';
+import { View, TouchableOpacity, Animated, Text, Image, ImageBackground } from 'react-native';
 import { useSelector } from 'react-redux';
-
+import { Icon } from 'react-native-elements';
 export default FloatingButton = (props) => {
-    const cartList = useSelector((store) => store.cart.cart);
+
     const { height, width } = props;
     const [viewHeight, setViewHeight] = useState(new Animated.Value(height));
     const [viewWidth, setViewWidth] = useState(new Animated.Value(width));
@@ -30,46 +30,77 @@ export default FloatingButton = (props) => {
 
     return (
         <TouchableOpacity
-            onPress={props.onPress} style={props.style}
+            onPress={props.CartList} style={props.style}
         >
             <Animated.View
                 style={{
-                    backgroundColor: "rgba(0,255,0,.5)",
+                    backgroundColor: 'rgba(255,255,255,.8)',
                     width: viewWidth,
                     height: viewHeight,
-                    borderBottomStartRadius: 1,
-                    borderTopStartRadius: 100,
-                    borderTopWidth: 3,
-                    borderLeftWidth: 3,
-                    borderColor: "black",
+                    borderBottomStartRadius: 30,
+                    borderTopStartRadius: 30,
+                    borderTopWidth: 2,
+                    borderLeftWidth: 2,
+                    borderColor: "rgba(255,255,255,.8)",
                     justifyContent: 'center',
                     alignItems: 'center',
                     paddingLeft: 10,
-                    paddingTop: 5
+                    paddingTop: 5,
+                    flexDirection: 'column'
                 }}
             >
-                {cartList.length > 0 &&
-                    <Text style={{
-                        backgroundColor: 'red',
-                        height: 24,
-                        width: 24,
-                        borderRadius: 20,
-                        textAlign: 'center',
-                        fontWeight: 900,
-                        color: 'white',
-                        marginLeft: 1
-                    }}>
-                        {cartList.length}
-                    </Text>
-                }
-                <Image
-                    resizeMode="contain"
-                    style={{
-                        width: 30,
-                        height: 30,
-                    }}
-                    source={require('../../asset/image/free-add-to-cart-icon-3046-thumb.png')}
-                />
+
+                <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+                    <Image
+                        resizeMode="cover"
+                        style={{
+                            width: 30,
+                            height: 30,
+                        }}
+                        source={require('../../asset/image/cart.png')}
+                    />
+                    {props.cartListCount > 0 ? (
+                        <View
+                            style={{
+
+                                position: 'absolute',
+
+                                width: 31,
+                                height: 45,
+                                borderRadius: 15 / 2,
+                                // right: height == 50 ? 3 : 3,
+                                // top: height == 50 ? 5 : 11,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                paddingLeft: 15,
+                                marginBottom: 5
+
+                            }}>
+                            <Text
+                                style={{
+                                    alignItems: 'center',
+                                    justifyContent: 'center',
+                                    color: "#FFFFFF",
+                                    fontSize: 12,
+                                    backgroundColor: height === 70 ? 'rgba(255,0,0,.9)' : 'rgba(255,0,0,.7)',
+                                    paddingTop: 3,
+                                    marginBottom: 20,
+                                    height: 22,
+                                    width: 22,
+                                    borderRadius: 50,
+                                    textAlign: 'center',
+                                    marginRight: 3
+                                }}>
+                                {props.cartListCount}
+
+                            </Text>
+                        </View>
+                    ) : null}
+                    <View>
+
+                    </View>
+                </View>
+
             </Animated.View>
         </TouchableOpacity >
     )

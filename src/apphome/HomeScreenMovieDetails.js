@@ -6,13 +6,18 @@ import PieChart from 'react-native-pie-chart'
 import LinearGradient from 'react-native-linear-gradient'
 import FloatingButton from './FloatingButton';
 import { addCart } from '../../redux/actions/addCartAction';
+import { Card, Button, Title, Paragraph } from 'react-native-paper';
+import { withRepeat } from 'react-native-reanimated/lib/types/lib/reanimated2/animation';
+import FloatingButtonRight from './FloatingButtonRight';
 
 export default function HomeScreenMovieDetails({ navigation, route }) {
+    const cartList = useSelector((store) => store.cart.cart);
     const dispatch = useDispatch();
     const movieId = route.params.props;
     const [details, setDetails] = useState({});
     const [isLoading, setIsLoading] = useState(false)
     const [url, setUrl] = useState(null)
+    const [cartBtnTxt, setCartBtnTxt] = useState('Add to cart')
 
     const [seriesImdb, setSeriesImdb] = useState([10, 10])
     const [seriesRt, setSeriesRt] = useState([10, 10])
@@ -33,16 +38,31 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
     const sliceColorMeta = ['#ddd', 'green']
 
 
-    const handleIncrement = (movieId) => {
-        setHeight(100);
-        setWidth(100);
-
+    const addtocart = (movieId, url, title) => {
         const payload = {
-            imdbId: movieId,
+            imdbID: movieId,
             price: 100,
-            qty: 1
+            qty: 1,
+            url: url,
+            title: title
         }
-        dispatch(addCart(payload));
+        setTimeout(() => {
+            setCartBtnTxt('In progress ...')
+            setHeight(50);
+            setWidth(50);
+        }, 1);
+
+        setTimeout(() => {
+            setCartBtnTxt('Item added into cart.')
+            dispatch(addCart(payload));
+        }, 1000);
+
+        setTimeout(() => {
+            setHeight(70);
+            setWidth(70);
+            setCartBtnTxt('Add to cart')
+        }, 2000);
+
     };
 
     const getMovieDetails = async () => {
@@ -81,13 +101,21 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
     const enableFocusCartButton = (condition) => {
         if (condition) {
-            setHeight(100);
-            setWidth(100);
+            setHeight(70);
+            setWidth(70);
         }
         else {
             setHeight(50);
             setWidth(50);
         }
+    }
+
+    const showCartItem = () => {
+        navigation.navigate('My Cart List')
+    }
+
+    const goHome = () => {
+        navigation.navigate('AppHome')
     }
 
     return (
@@ -129,40 +157,46 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             />
 
                         </View>
-                        <LinearGradient
-                            colors={['#ddd', '#FFF', '#ddd']}
-                            style={styles.container}
-                            locations={[.021, .09, .99]}
-                        >
-                            <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', marginBottom: 10, marginTop: 15, textAlign: 'center' }}>{details.Title}</Text>
-                            <View style={{ flexDirection: 'row' }}>
-                                <Text style={{ color: '#000', }}>IMDB </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text>
 
-                                <Text style={{ color: '#000', marginStart: 10 }}>VOTE </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.imdbVotes}</Text>
+                        <Card style={styles.containerCard}>
 
-                            </View>
+                            <Card.Content>
+                                <Card.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                    <Title>
+                                        <Text style={{ fontFamily: 'Courthes', fontSize: 20, color: 'green' }}>{details.Title}</Text>
+                                    </Title>
+                                </Card.Content>
 
-                            <View style={{ flexDirection: 'row', }}>
-                                <Text style={{ color: '#000', marginStart: 10 }}>COLLECTION </Text>
-                                <Text style={{ color: '#FF0000', }}>{details.BoxOffice ? details.BoxOffice : '1,00,000'}</Text>
-                                <Text style={{ color: '#000', marginStart: 10 }}>DURATION </Text>
-                                <Text style={{ color: '#FF0000' }}>{details.Runtime}</Text>
-                            </View>
+                                <View style={{ flexDirection: 'row', marginBottom: 5 }}>
+                                    <View style={{ width: '50%' }}>
+                                        <Text style={{ color: '#000', marginStart: '2%' }}>IMDB <Text style={{ color: '#FF0000', }}>{details.imdbRating}</Text></Text>
+                                    </View>
+                                    <View style={{ width: '50%' }}>
+                                        <Text style={{ color: '#000', marginStart: '2%' }}>VOTE <Text style={{ color: '#FF0000', }}>{details.imdbVotes}</Text></Text>
+                                    </View>
 
+                                </View>
 
-                        </LinearGradient>
+                                <View style={{ flexDirection: 'row', marginBottom: 5 }}>
+                                    <View style={{ width: '50%' }}>
+                                        <Text style={{ color: '#000', marginStart: '2%' }}>COLLECTION <Text style={{ color: '#FF0000', }}>{details.BoxOffice ? details.BoxOffice : '1,00,000'}</Text></Text>
+                                    </View>
 
+                                    <View style={{ width: '50%' }}>
+                                        <Text style={{ color: '#000', marginStart: '2%' }}>DURATION <Text style={{ color: '#FF0000' }}>{details.Runtime}</Text></Text>
+                                    </View>
+                                </View>
+                            </Card.Content>
 
+                        </Card>
 
                         <LinearGradient
                             colors={['#DDD', '#FFF', '#ddd']}
                             locations={[.3, .55, .9]}
 
                         >
-                            <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, marginStart: 22 }}>Overview</Text>
+                            <View style={{ flexDirection: 'column' }}>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, marginLeft: 20, marginRight: 20, borderBottomWidth: 5, borderBottomColor: 'green' }}>Overview</Text>
                                 <Text style={{ color: '#000', marginTop: 1, paddingLeft: 25, paddingRight: 25, textAlign: 'justify' }}>{details.Plot}</Text>
                             </View>
                         </LinearGradient>
@@ -172,8 +206,8 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             colors={['#DDD', '#FFF', '#ddd']}
                             locations={[.3, .55, .9]}
                         >
-                            <View style={{ flexDirection: 'column', marginTop: 30 }}>
-                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, marginStart: 22 }}>Ratings</Text>
+                            <View style={{ flexDirection: 'column', }}>
+                                <Text style={{ fontFamily: 'Courthes', fontSize: 22, color: 'green', padding: 5, margin: 20, borderBottomWidth: 5, borderBottomColor: 'green' }}>Ratings</Text>
                             </View>
 
 
@@ -188,7 +222,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                             }}>
                                 <View style={{
                                     width: '33%',
-                                    marginTop: 5,
+
                                     marginBottom: 5,
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -207,7 +241,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
                                 <View style={{
                                     width: '33%',
-                                    marginTop: 5,
+
                                     marginBottom: 5,
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -225,7 +259,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
                                 <View style={{
                                     width: '33%',
-                                    marginTop: 5,
+
                                     marginBottom: 5,
                                     justifyContent: 'center',
                                     alignItems: 'center',
@@ -248,12 +282,48 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
 
                         </LinearGradient>
+
+
+
+                        <TouchableOpacity onPress={() => { addtocart(movieId, url, details.Title) }}>
+                            <View style={{
+                                //width: '100%',
+                                height: 50,
+                                flexDirection: 'row',
+                                flex: 1,
+                                flexWrap: 'wrap',
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: 'green',
+                                paddingTop: 10,
+                                margin: 20,
+                                borderRadius: 10
+                            }}>
+                                <Text style={{ color: 'white', textAlign: 'center', fontSize: 18 }}>{cartBtnTxt}</Text>
+
+                            </View>
+
+                        </TouchableOpacity>
+
+
+
                     </ScrollView>
-                    <FloatingButton
-                        style={styles.floatinBtn}
-                        onPress={() => { handleIncrement(movieId) }}
-                        height={cartHeight}
-                        width={cartWidth}
+                    {cartList.length > 0 &&
+                        <FloatingButton
+                            CartList={() => { showCartItem() }}
+                            style={styles.floatinBtn}
+                            height={cartHeight}
+                            width={cartWidth}
+                            cartListCount={cartList.length}
+                        />
+                    }
+
+                    <FloatingButtonRight
+                        goHome={() => { goHome() }}
+                        style={styles.floatinBtnRight}
+                        height={50}
+                        width={50}
+
                     />
 
 
@@ -286,7 +356,16 @@ const styles = StyleSheet.create({
     },
     floatinBtn: {
         position: 'absolute',
-        bottom: 0,
+        top: 0,
         right: 0,
+    },
+    floatinBtnRight: {
+        position: 'absolute',
+        top: 0,
+        left: 0,
+    },
+    containerCard: {
+        alignContent: 'center',
+        margin: 20
     }
 })
