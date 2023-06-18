@@ -267,7 +267,13 @@ const Right = ({ navigation }) => {
 function App() {
   return (
     <Provider store={store}>
-      <StatusBar hidden={true} />
+
+      <StatusBar
+        backgroundColor="rgba(221, 221, 221, 0.5)"
+        barStyle="dark-content"
+        translucent={true}
+        hidden={false}
+      />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />

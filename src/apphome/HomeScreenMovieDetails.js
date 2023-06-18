@@ -1,14 +1,13 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { ActivityIndicator, Alert, Image, SafeAreaView, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ActivityIndicator, Image, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import PieChart from 'react-native-pie-chart'
 import LinearGradient from 'react-native-linear-gradient'
 import FloatingButton from './FloatingButton';
 import { addCart } from '../../redux/actions/addCartAction';
-import { Card, Button, Title, Paragraph } from 'react-native-paper';
-import { withRepeat } from 'react-native-reanimated/lib/types/lib/reanimated2/animation';
-import FloatingButtonRight from './FloatingButtonRight';
+import { Card, Title } from 'react-native-paper';
+import FloatingButtonLeft from './FloatingButtonLeft';
 
 export default function HomeScreenMovieDetails({ navigation, route }) {
     const cartList = useSelector((store) => store.cart.cart);
@@ -147,6 +146,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
 
                         }}
                         >
+
                             <Image source={url}
                                 style={{
                                     width: '100%',
@@ -318,7 +318,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                         />
                     }
 
-                    <FloatingButtonRight
+                    <FloatingButtonLeft
                         goHome={() => { goHome() }}
                         style={styles.floatinBtnRight}
                         height={50}
@@ -356,12 +356,12 @@ const styles = StyleSheet.create({
     },
     floatinBtn: {
         position: 'absolute',
-        top: 0,
+        top: 25,
         right: 0,
     },
     floatinBtnRight: {
         position: 'absolute',
-        top: 0,
+        top: 15,
         left: 0,
     },
     containerCard: {

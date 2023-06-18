@@ -86,12 +86,12 @@ export default function MyCartScreen({ navigation }) {
                     }}>
 
                         <View style={{ width: 32, }}><Text style={{ color: 'green', fontWeight: 800 }}>QTY </Text></View>
-                        <View style={{ width: 25, borderColor: 'green', borderRadius: 50, marginLeft: 5, borderWidth: 1 }}><Text style={{ fontSize: 20, textAlign: 'center', color: 'green' }}>{qty}</Text></View>
+                        <View style={{ width: 30, borderColor: 'green', borderRadius: 50, marginLeft: 5, borderWidth: 1 }}><Text style={{ fontSize: 20, textAlign: 'center', color: 'green' }}>{qty}</Text></View>
                         <TouchableOpacity onPress={() => { increase(imdbID) }}>
-                            <View style={{ width: 30, height: 30, backgroundColor: 'green', marginLeft: 15, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 20, textAlign: 'center' }}>+</Text></View>
+                            <View style={{ width: 35, height: 30, backgroundColor: 'green', marginLeft: 15, justifyContent: 'center', alignItems: 'center' }}><Text style={{ fontSize: 20, textAlign: 'center' }}>+</Text></View>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => { decrease(imdbID) }}>
-                            <View style={{ width: 30, height: 30, backgroundColor: 'red', }}><Text style={{ fontSize: 20, textAlign: 'center' }}>-</Text></View>
+                            <View style={{ width: 35, height: 30, backgroundColor: 'red', }}><Text style={{ fontSize: 20, textAlign: 'center' }}>-</Text></View>
                         </TouchableOpacity>
                     </View>
                 </View>
@@ -154,8 +154,8 @@ export default function MyCartScreen({ navigation }) {
         const billingDetails = {
             email: 'hmasad09@gmail.com',
         };
-        const clientSecret = await fetchPaymentIntentClientSecret();
-        //const clientSecret = "pi_3NKI8YAKk6LSMxlE3n8dsN0y_secret_1AFdAmKBDJkXx7jWUWHX14zti"
+        //const clientSecret = await fetchPaymentIntentClientSecret();
+        const clientSecret = "pi_3NKI8YAKk6LSMxlE3n8dsN0y_secret_1AFdAmKBDJkXx7jWUWHX14zti"
         const { paymentIntent, error } = await confirmPayment(clientSecret, {
             paymentMethodType: 'Card',
             paymentMethodData: {
@@ -194,8 +194,6 @@ export default function MyCartScreen({ navigation }) {
             urlScheme="your-url-scheme" // required for 3D Secure and bank redirects
         >
             <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center', marginTop: 20 }}>
-
-
                 <FlatList
                     data={cartList}
                     renderItem={renderItem}
@@ -223,28 +221,22 @@ export default function MyCartScreen({ navigation }) {
 
                 {
                     success && (
-
                         <View style={{
-
                             width: responsiveWidth(100),
                             height: 100,
                             alignItems: 'center',
                             justifyContent: 'center',
                             backgroundColor: 'white',
-
-
                         }}>
                             <Text style={{ color: 'white', textAlign: 'center', fontSize: 14, color: 'green' }}>Congratulations. Payment successfull.</Text>
                             <TouchableOpacity onPress={() => { goBack() }}>
                                 <Text style={{ color: 'white', textAlign: 'center', fontSize: 14, backgroundColor: 'red', marginTop: 10, borderRadius: 5, padding: 5 }}>  Home </Text>
                             </TouchableOpacity>
                         </View>
-
                     )
                 }
-
             </View>
-            {showstripe &&
+            {showstripe && cartList.length > 0 &&
                 <View>
                     <CardField
                         postalCodeEnabled={false}
