@@ -20,3 +20,11 @@ export const decreaseCart = (payload) => {
     };
 };
 
+
+export const clearCart = () => {
+    return {
+        type: 'CLEAR_CART'
+    };
+};
+
+

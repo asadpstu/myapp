@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Provider } from 'react-redux';
-import { View, Text, TouchableOpacity, Image, StyleSheet } from 'react-native';
+import { View, Text, TouchableOpacity, Image, StyleSheet, StatusBar, Button } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import { DrawerContentScrollView, DrawerItemList, createDrawerNavigator } from '@react-navigation/drawer';
@@ -237,10 +237,10 @@ function BottomTabBar({ navigation }) {
 const Left = ({ navigation }) => {
   return (
     <TouchableOpacity onPress={() => navigation.navigate('DrawerScreen')}>
-      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
+      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10, borderWidth: 1 }}>
         <Image
           style={{ width: 20, height: 20 }}
-          source={require('./asset/image/tabbar/home_top.gif')}
+          source={require('./asset/image/tabbar/home.png')}
         />
       </View>
     </TouchableOpacity>
@@ -254,10 +254,10 @@ const Right = ({ navigation }) => {
         userName: `Friend_${String(Math.random() * 10).split('.')[1]}`,
       })}
     >
-      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#ddd', borderRadius: 50 }}>
+      <View style={{ height: 36, width: 36, justifyContent: 'center', alignItems: 'center', backgroundColor: '#fff', borderRadius: 10, borderWidth: 1 }}>
         <Image
-          style={{ width: 25, height: 25 }}
-          source={require('./asset/image/tabbar/phone.gif')}
+          style={{ width: 24, height: 23 }}
+          source={require('./asset/image/tabbar/call.png')}
         />
       </View>
     </TouchableOpacity>
@@ -267,6 +267,7 @@ const Right = ({ navigation }) => {
 function App() {
   return (
     <Provider store={store}>
+      <StatusBar hidden={true} />
       <NavigationContainer>
         <Stack.Navigator>
           <Stack.Screen name="Onboarding" component={OnboardingScreen} options={{ headerShown: false }} />

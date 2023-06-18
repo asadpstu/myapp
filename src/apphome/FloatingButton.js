@@ -73,7 +73,8 @@ export default FloatingButton = (props) => {
                                 alignItems: 'center',
                                 justifyContent: 'center',
                                 paddingLeft: 15,
-                                marginBottom: 5
+                                marginBottom: 5,
+
 
                             }}>
                             <Text
@@ -89,7 +90,7 @@ export default FloatingButton = (props) => {
                                     width: 22,
                                     borderRadius: 50,
                                     textAlign: 'center',
-                                    marginRight: 3
+                                    marginRight: 3,
                                 }}>
                                 {props.cartListCount}
 

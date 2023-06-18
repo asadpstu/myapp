@@ -91,7 +91,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
     useEffect(() => {
         setIsLoading(true);
         getMovieDetails();
-    }, [])
+    }, [movieId])
 
     const isCloseToBottom = ({ layoutMeasurement, contentOffset, contentSize }) => {
         const paddingToBottom = 20;
@@ -161,7 +161,7 @@ export default function HomeScreenMovieDetails({ navigation, route }) {
                         <Card style={styles.containerCard}>
 
                             <Card.Content>
-                                <Card.Content style={{ justifyContent: 'center', alignItems: 'center' }}>
+                                <Card.Content >
                                     <Title>
                                         <Text style={{ fontFamily: 'Courthes', fontSize: 20, color: 'green' }}>{details.Title}</Text>
                                     </Title>
