@@ -24,6 +24,8 @@ stripe folder contains the backend code to generate clientsecret.
 Stripe folder does not have any relation with the mobile app source code. 
 
 Go to stripe folder
+Github : https://github.com/asadpstu/stripe
+Deployed on : https://render.com/
 Step 1 : cd stripe
 Step 2 : node server.js
 
@@ -42,5 +44,4 @@ Response :
 
 For emulator  test purpose , copy and paste [clientSecret] in MyCartScreen.js here 
   const clientSecret = await fetchPaymentIntentClientSecret();
-  const clientSecret = "pi_3NKI8YAKk6LSMxlE3n8dsN0y_secret_1AFdAmKBDJkXx7jWUWHX14zti"`
 `

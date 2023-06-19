@@ -12,7 +12,7 @@ export default function MyCartScreen({ navigation }) {
     const [total, setTotal] = useState(0);
     const [success, setSuccess] = useState(false);
     const [showstripe, setShowStripe] = useState(false);
-    const API_URL = 'http://localhost:4242';
+    const API_URL = 'https://rn-stripe-service.onrender.com';
     const { confirmPayment, loading } = useConfirmPayment();
     const cartList = useSelector((store) => store.cart.cart);
     const dispatch = useDispatch();
@@ -144,7 +144,7 @@ export default function MyCartScreen({ navigation }) {
             body: JSON.stringify({
                 currency: 'usd',
                 amount: total,
-                paymentMethodType: 'card'
+                paymentMethodType: ["card"]
             }),
         });
         const { clientSecret } = await response.json();
@@ -154,8 +154,7 @@ export default function MyCartScreen({ navigation }) {
         const billingDetails = {
             email: 'hmasad09@gmail.com',
         };
-        //const clientSecret = await fetchPaymentIntentClientSecret();
-        const clientSecret = "pi_3NKI8YAKk6LSMxlE3n8dsN0y_secret_1AFdAmKBDJkXx7jWUWHX14zti"
+        const clientSecret = await fetchPaymentIntentClientSecret();
         const { paymentIntent, error } = await confirmPayment(clientSecret, {
             paymentMethodType: 'Card',
             paymentMethodData: {
@@ -165,11 +164,7 @@ export default function MyCartScreen({ navigation }) {
 
         if (error) {
             console.log('Payment confirmation error', error);
-            alert("Transaction failed! Showing fake success message. ")
-            /* By Passing the error message */
-            setShowStripe(false)
-            setSuccess(true)
-            dispatch(clearCart());
+            alert("Transaction failed!")
 
         } else if (paymentIntent) {
             alert("Transaction complete")
