@@ -1,20 +1,8 @@
 App icon set : 
-
 generate icon :  https://easyappicon.com
 
-implementation : https://www.mridul.tech/blogs/how-to-change-react-native-app-icon-for-ios-and-android
-
-
-To test stripe : 
-stripe folder contains the backend code to generate clientsecret.
-
-Stripe folder does not have any relation with the mobile app source code. 
-
 Go to stripe folder
-
-Github : https://github.com/asadpstu/stripe
-
-Deployed on : https://render.com/
+Backend Deployed on : https://render.com/
 
 <img src="https://github.com/asadpstu/myapp/assets/10845009/60a0940d-c105-4ea2-b599-dd9bfeb540e7" height="300" />
 <img src="https://github.com/asadpstu/myapp/assets/10845009/614d2ed9-3ee2-4a26-9123-526abf6e6151" height="300" />
