@@ -5,7 +5,6 @@ Go to stripe folder
 Backend Deployed on : https://render.com/
 
 <img src="https://github.com/asadpstu/myapp/assets/10845009/60a0940d-c105-4ea2-b599-dd9bfeb540e7" height="300" />
-<img src="https://github.com/asadpstu/myapp/assets/10845009/614d2ed9-3ee2-4a26-9123-526abf6e6151" height="300" />
 <img src="https://github.com/asadpstu/myapp/assets/10845009/5965c54e-115a-4ae9-addf-41ba79c389c9" height="300" />
 <img src="https://github.com/asadpstu/myapp/assets/10845009/31619adc-d0e4-481f-a5f9-f2171a06194c" height="300" />
 <img src="https://github.com/asadpstu/myapp/assets/10845009/488154ef-c78d-467a-80bc-052890c86c44" height="300" />
