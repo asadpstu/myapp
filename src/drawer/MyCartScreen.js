@@ -7,8 +7,11 @@ import { clearCart, increaseCart, decreaseCart } from '../../redux/actions/addCa
 
 import { StripeProvider, useConfirmPayment } from '@stripe/stripe-react-native';
 import { CardField, useStripe } from '@stripe/stripe-react-native';
+import { db } from '../firbase/config';
+
 
 export default function MyCartScreen({ navigation }) {
+    const [confirmed, setConfirmed] = useState(false)
     const [total, setTotal] = useState(0);
     const [success, setSuccess] = useState(false);
     const [showstripe, setShowStripe] = useState(false);
@@ -151,8 +154,14 @@ export default function MyCartScreen({ navigation }) {
         return clientSecret;
     };
     const handlePayPress = async () => {
+        setConfirmed(true)
+        const userId = "asad183099"
         const billingDetails = {
             email: 'hmasad09@gmail.com',
+            user: "H M Ashaduzzaman",
+            date: Date.now(),
+            user_id: userId,
+            shipping: "Gulsan-02, Uttar Badda, Dhaka"
         };
         const clientSecret = await fetchPaymentIntentClientSecret();
         const { paymentIntent, error } = await confirmPayment(clientSecret, {
@@ -165,9 +174,18 @@ export default function MyCartScreen({ navigation }) {
         if (error) {
             console.log('Payment confirmation error', error);
             alert("Transaction failed!")
+            setConfirmed(false)
 
         } else if (paymentIntent) {
-            alert("Transaction complete")
+            setConfirmed(false)
+            const dbRef = db.ref()
+            const payload = {
+                "items": cartList,
+                "userinfo": billingDetails
+            }
+            dbRef.push(payload)
+                .then(() => alert("Transaction complete"))
+                .catch(error => alert("Firebase store failed", error));
             setShowStripe(false)
             setSuccess(true)
             dispatch(clearCart());
@@ -256,19 +274,36 @@ export default function MyCartScreen({ navigation }) {
                             console.log('focusField', focusedField);
                         }}
                     />
-                    <TouchableOpacity onPress={() => { !loading && handlePayPress() }}>
-                        <View style={{
-                            width: responsiveWidth(90),
-                            height: 50,
-                            alignItems: 'center',
-                            justifyContent: 'center',
-                            backgroundColor: !loading ? '#28B8EA' : '#cccc',
-                            margin: 20,
-                            borderRadius: 10
-                        }}>
-                            <Text style={{ color: 'white', textAlign: 'center', fontSize: 14 }}>Pay</Text>
-                        </View>
-                    </TouchableOpacity>
+                    {!confirmed ?
+
+                        <TouchableOpacity onPress={() => { !loading && handlePayPress() }}>
+                            <View style={{
+                                width: responsiveWidth(90),
+                                height: 50,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: !loading ? '#28B8EA' : '#cccc',
+                                margin: 20,
+                                borderRadius: 10
+                            }}>
+                                <Text style={{ color: 'white', textAlign: 'center', fontSize: 14 }}>Pay</Text>
+                            </View>
+                        </TouchableOpacity>
+                        :
+                        <TouchableOpacity>
+                            <View style={{
+                                width: responsiveWidth(90),
+                                height: 50,
+                                alignItems: 'center',
+                                justifyContent: 'center',
+                                backgroundColor: !loading ? '#28B8EA' : '#cccc',
+                                margin: 20,
+                                borderRadius: 10
+                            }}>
+                                <Text style={{ color: 'white', textAlign: 'center', fontSize: 14 }}>Payment is processing...</Text>
+                            </View>
+                        </TouchableOpacity>
+                    }
                 </View>
             }
 
