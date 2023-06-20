@@ -63,3 +63,4 @@ yarn-error.log
 .metro-health-check*
 
 /src/firbase/config.js
+/android/app/google-services.json
