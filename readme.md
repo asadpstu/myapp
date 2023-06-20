@@ -1,47 +1,50 @@
-API Key
-a888e4e4ee64b9010de1caea4c5d59dc
-
-Stripe Publishable key
-pk_test_wXXygoU9x9WcYag3k8qdNsOq
-
-To build Android Apk
-
-Step 1 : cd android
-Step 2 : ./gradlew clean
-Step 3: cd ..
-Step 4: npm run build:android
-
-
-
 App icon set : 
 generate icon :  https://easyappicon.com
-implementation : https://www.mridul.tech/blogs/how-to-change-react-native-app-icon-for-ios-and-android
-
-
-To test stripe : 
-stripe folder contains the backend code to generate clientsecret.
-
-Stripe folder does not have any relation with the mobile app source code. 
 
 Go to stripe folder
-Github : https://github.com/asadpstu/stripe
-Deployed on : https://render.com/
-Step 1 : cd stripe
-Step 2 : node server.js
+Backend Deployed on : https://render.com/
 
-Postman : 
-http://localhost:4242/create-payment-intent [Post request]
-{
-    "currency": "usd",
-    "amount": 500,
-    "paymentMethodType" : ["card"]
-}
-Response : 
-{
-    "clientSecret": "pi_3NKI8YAKk6LSMxlE3n8dsN0y_secret_1AFdAmKBDJkXx7jWUWHX14zti",
-    "nextAction": null
-}
 
-For emulator  test purpose , copy and paste [clientSecret] in MyCartScreen.js here 
-  const clientSecret = await fetchPaymentIntentClientSecret();
-`
+<img src="https://github.com/asadpstu/myapp/assets/10845009/0de5d680-bbc8-411f-88cd-44877fffeb18" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/6fd73569-0d9b-4a81-92b7-0b54faa2c313" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/dd06b19e-1ba3-42d5-8499-5e331db1ff7e"  height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/6f4ea7b2-966f-4ad8-85e6-fd0506d514b7" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/84511e1d-3468-4489-b441-c8a590879290" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/8d9efb1b-3a78-4709-a42a-62a8e4df738d" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/ced30b2f-537b-480c-8a5f-51512698f398" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/dea6a7c1-fad0-4bed-b1bf-b7d03ea2fe63" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/a138ed48-6b35-44b8-a12f-813b62586262" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/055004d5-0cf1-45e8-87ec-4d2c40d3c30c" height="250px" width="120" />
+
+
+<img src="https://github.com/asadpstu/myapp/assets/10845009/e6064145-cb0b-48e9-b0fe-d64d1a9f6c9b" height="250px" width="120" />
+
+
+
+
+
+
+
+
+
+
+
+
