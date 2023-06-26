@@ -28,6 +28,12 @@ Backend Deployed on : https://render.com/
 
 <img src="https://github.com/asadpstu/myapp/assets/10845009/dea6a7c1-fad0-4bed-b1bf-b7d03ea2fe63" height="250px" width="120" />
 
+<img height="250px" width="120" alt="Screen Shot 2023-06-26 at 19 52 58" src="https://github.com/asadpstu/React-native-Movie-Cart-Stripe/assets/10845009/3c9e5ffc-192c-451b-9721-f432d8806348">
+
+<img height="250px" width="120"  alt="Screen Shot 2023-06-26 at 19 54 07" src="https://github.com/asadpstu/React-native-Movie-Cart-Stripe/assets/10845009/8581ef1d-12c0-4ccc-b0a2-701af130bd4c">
+
+<img height="250px" width="120"  alt="Screen Shot 2023-06-26 at 19 55 03" src="https://github.com/asadpstu/React-native-Movie-Cart-Stripe/assets/10845009/4f0fa96b-3d4b-4f3a-9390-932b5898b54a">
+
 
 <img src="https://github.com/asadpstu/myapp/assets/10845009/a138ed48-6b35-44b8-a12f-813b62586262" height="250px" width="120" />
 
